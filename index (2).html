@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniela Colquhoun | Accounting & Finance Portfolio</title>
+    <style>
+        :root {
+            --primary: #00274c; 
+            --secondary: #6c757d; 
+            --accent: #cc0033; 
+            --background: #f8f9fa; 
+            --text-dark: #212529;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            padding: 60px 0;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .hero-text h1 { font-size: 3rem; color: var(--primary); line-height: 1.1; margin-bottom: 10px; }
+        .hero-text .subtitle { font-size: 1.2rem; color: var(--secondary); font-weight: 500; margin-bottom: 20px; }
+        .hero-text p { font-size: 1.05rem; margin-bottom: 25px; color: #444; border-left: 3px solid #ddd; padding-left: 15px; font-style: italic; }
+
+        .profile-pic { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        section { padding: 60px 0; }
+        h2 { font-size: 1.8rem; color: var(--primary); margin-bottom: 30px; border-left: 5px solid var(--accent); padding-left: 15px; }
+
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+        .card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+        .card h3 { color: var(--primary); margin-bottom: 15px; }
+        .card .date { display: block; font-size: 0.85rem; color: var(--secondary); margin-bottom: 15px; font-weight: 600; }
+
+        ul { list-style-type: none; }
+        ul li { position: relative; padding-left: 20px; margin-bottom: 10px; }
+        ul li::before { content: "•"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
+
+        #contact { text-align: center; background: #fff; padding: 50px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        footer { text-align: center; padding: 40px 0; font-size: 0.9rem; color: var(--secondary); border-top: 1px solid #e9ecef; }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Daniela Colquhoun</h1>
+            <p class="subtitle">Accounting & Finance | Rutgers Business School</p>
+            <p>
+                "I am driven by the critical role audit plays in maintaining global market transparency and financial integrity. As an Accounting and Finance double-major, I view auditing as the strategic verification of financial narratives through meticulous data analysis and a commitment to regulatory standards. My goal is to leverage my academic foundation and rotational experience to provide rigorous, tech-forward assurance in complex financial environments."
+            </p>
+            <div class="badge-container">
+                <span class="badge">CPA Candidate: 150 Credits May 2027</span>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="Assets/IMG_1152.jpg" alt="Daniela Colquhoun" class="profile-pic">
+        </div>
+    </header>
+
+    <section id="experience">
+        <h2>Professional Experience</h2>
+        <div class="bento-grid">
+            <div class="card">
+                <h3>Deloitte</h3>
+                <span class="date">Discovery Intern II | New York, NY | Jun 2025 - Aug 2025</span>
+                <ul>
+                    <li>Advancing through selective rotational program focusing on Audit & Assurance and Tax workstreams.</li>
+                    <li>Analyzing risk-based methodologies and the application of global audit platforms.</li>
+                    <li>Collaborating with engagement teams to support financial testing and ensure adherence to professional audit standards.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Deloitte</h3>
+                <span class="date">Discovery Intern I | New York, NY | Jun 2024 - Jul 2024</span>
+                <ul>
+                    <li>Conducted Excel-based financial statement analysis modeling balance sheet and income statement figures to identify budget variances.</li>
+                    <li>Leveraged Deloitte's AI tool (Sidekick) to surface financial risks and compliance gaps.</li>
+                    <li>Presented executive-ready data findings to a cross-functional leadership team.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership">
+        <h2>Leadership & Involvement</h2>
+        <div class="bento-grid">
+            <div class="card">
+                <h3>NABA Treasurer</h3>
+                <span class="date">Jun 2024 - Present</span>
+                <ul>
+                    <li>Managing $2,000+ in organizational funding and budgeting.</li>
+                    <li>Ensuring 100% compliance with Rutgers Business Governing Association (RBGA) guidelines.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>RUAA Secretary</h3>
+                <span class="date">May 2024 - Present</span>
+                <ul>
+                    <li>Coordinating communications for 600+ students.</li>
+                    <li>Drove intern application growth by 288% through improved engagement strategies.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteer">
+        <h2>Field Practice</h2>
+        <div class="card" style="width: 100%;">
+            <h3>VITA Program: Quality Reviewer</h3>
+            <span class="date">2024 - 2026 Tax Seasons</span>
+            <ul>
+                <li>Prepared 60+ individual federal tax returns for low-income clients accurately reporting W-2 and 1099 income.</li>
+                <li>Served as Quality Reviewer, cross-checking all entries against source documents to maintain zero-error submission standards.</li>
+                <li>Conducted client intake interviews and verified government-issued IDs to prevent potential tax fraud.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <a href="mailto:daniela.colquhoun@gmail.com" class="btn">Email Daniela</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Daniela Colquhoun.</p>
+    </footer>
+</div>
+
+</body>
+</html>
