@@ -178,6 +178,9 @@
             .hero-text h1 { font-size: 2.2rem; }
         }
     </style>
+
+    <link rel="stylesheet" href="game-style.css">
+    
 </head>
 <body>
 
@@ -281,6 +284,50 @@
         </div>
     </section>
 
+    <div id="poke-mini-app">
+    <div id="start-screen" class="game-screen">
+        <h1>PokéGuess</h1>
+        <div class="mode-select">
+            <button onclick="setMode('unlimited')">Unlimited</button>
+            <button onclick="setMode('timed')">Timed (3 Lives)</button>
+        </div>
+        <div id="filter-settings" class="hidden">
+            <select id="region-filter">
+                <option value="all">All Regions</option>
+                <option value="kanto">Kanto (Gen 1)</option>
+                <option value="paldea">Paldea (Gen 9)</option>
+            </select>
+            <button class="start-btn" onclick="startGame()">START</button>
+        </div>
+    </div>
+
+    <div id="game-container" class="game-screen hidden">
+        <div class="stats-bar">
+            <div id="lives-container"></div>
+            <div id="timer-wrapper" class="hidden">⏳ <span id="timer">10</span>s</div>
+            <div class="streak-count">🔥 <span id="current-score">0</span></div>
+        </div>
+        <div class="canvas">
+            <img id="poke-sprite" class="silhouette" src="">
+        </div>
+        <div id="button-grid"></div>
+    </div>
+
+    <div id="game-over-screen" class="game-screen hidden">
+        <div class="game-over-content">
+            <h2 class="streak-text">STREAK BROKEN!</h2>
+            <h1 class="game-over-text">GAME OVER</h1>
+            <img src="leavanny_sad.png" alt="Sad Leavanny" class="sad-img">
+            <div class="final-stats">
+                <p>Streak: <span id="final-score">0</span> | Best: <span id="local-high">0</span></p>
+            </div>
+            <div class="btn-group">
+                <button class="animated-btn" onclick="location.reload()">RETRY</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
     <section id="contact" class="reveal">
         <h2>Ready to connect?</h2>
         <div class="btn-group">
@@ -310,5 +357,7 @@
     reveal();
 </script>
 
+    <script src="game-logic.js"></script>
+    
 </body>
 </html>
