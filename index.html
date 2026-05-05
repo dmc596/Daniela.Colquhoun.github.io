@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniela Colquhoun | Accounting & Finance Portfolio</title>
+    <!-- Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --primary-grad: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --deep-purple: #4834d4;
+            --accent-purple: #be9eff;
+            --background: #fdfbff;
+            --text-dark: #2d3436;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+
+        .header-bg {
+            background: var(--primary-grad);
+            color: white;
+            padding: 80px 0 120px 0;
+            clip-path: ellipse(150% 100% at 50% 0%);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: -60px;
+        }
+
+        .hero-text {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-text h1 { font-size: 2.8rem; color: var(--deep-purple); line-height: 1.1; margin-bottom: 10px; }
+        .hero-text .subtitle { font-size: 1.2rem; color: #666; font-weight: 600; margin-bottom: 20px; display: block; }
+        .hero-text p { font-size: 1.05rem; margin-bottom: 25px; color: #555; border-left: 4px solid var(--accent-purple); padding-left: 15px; font-style: italic; }
+
+        .profile-pic { 
+            width: 100%; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(118, 75, 162, 0.3);
+            border: 5px solid white;
+            transition: transform 0.4s ease;
+        }
+        .profile-pic:hover { transform: scale(1.03); }
+
+        .badge {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-grad);
+            color: white;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        section { padding: 80px 0; }
+        h2 { font-size: 2rem; color: var(--deep-purple); margin-bottom: 40px; text-align: center; position: relative; }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-grad);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+
+        .card { 
+            background: var(--white); 
+            padding: 35px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
+            transition: all 0.3s ease;
+            border: 1px solid rgba(118, 75, 162, 0.05);
+        }
+        .card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(118, 75, 162, 0.1);
+        }
+        .card h3 { color: var(--deep-purple); margin-bottom: 15px; font-size: 1.4rem; }
+        .card .date { display: block; font-size: 0.9rem; color: #888; margin-bottom: 20px; font-weight: 600; text-transform: uppercase; }
+
+        ul { list-style-type: none; }
+        ul li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 0.95rem; }
+        ul li::before { 
+            content: "→"; 
+            color: var(--deep-purple); 
+            position: absolute; 
+            left: 0; 
+            font-weight: bold; 
+        }
+
+        #contact { 
+            text-align: center; 
+            background: var(--primary-grad); 
+            padding: 80px 20px; 
+            border-radius: 30px; 
+            color: white;
+            margin-bottom: 60px;
+        }
+        #contact h2 { color: white; }
+        #contact h2::after { background: white; }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: white;
+            color: var(--deep-purple);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .btn:hover { 
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: var(--deep-purple);
+        }
+
+        footer { text-align: center; padding: 40px 0; font-size: 0.9rem; color: #888; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .project-card {
+            border: 2px solid var(--accent-purple);
+            background: linear-gradient(to bottom right, #ffffff, #f9f7ff);
+        }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-text { margin-top: 0; }
+            .hero-text h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-bg">
+    <div class="container">
+        <h2 style="color: white; border: none; text-align: left; margin-bottom: 0;" class="animate__animated animate__fadeInDown">Professional Portfolio</h2>
+    </div>
+</div>
+
+<div class="container">
+    <header class="hero">
+        <div class="hero-text animate__animated animate__fadeInLeft">
+            <h1>Daniela Colquhoun</h1>
+            <span class="subtitle">Accounting & Finance | Rutgers Business School</span>
+            <p>
+                "I am driven by the critical role audit plays in maintaining global market transparency and financial integrity. As an Accounting and Finance double-major, I view auditing as the strategic verification of financial narratives through meticulous data analysis and a commitment to regulatory standards."
+            </p>
+            <div class="badge-container">
+                <span class="badge">CPA Candidate: May 2027</span>
+            </div>
+        </div>
+        <div class="hero-image animate__animated animate__fadeInRight">
+            <img src="Assets/IMG_1152.jpg" alt="Daniela Colquhoun" class="profile-pic">
+        </div>
+    </header>
+
+    <section id="experience">
+        <h2 class="reveal">Professional Experience</h2>
+        <div class="bento-grid">
+            <div class="card reveal">
+                <h3>Deloitte</h3>
+                <span class="date">Discovery Intern II | Jun 2025 - Aug 2025</span>
+                <ul>
+                    <li>Advancing through selective rotational program focusing on Audit & Assurance and Tax workstreams.</li>
+                    <li>Analyzing risk-based methodologies and the application of global audit platforms.</li>
+                    <li>Collaborating with engagement teams to support financial testing.</li>
+                </ul>
+            </div>
+
+            <div class="card reveal">
+                <h3>Deloitte</h3>
+                <span class="date">Discovery Intern I | Jun 2024 - Jul 2024</span>
+                <ul>
+                    <li>Conducted Excel-based financial statement analysis modeling balance sheet and income statement figures.</li>
+                    <li>Leveraged Deloitte's AI tool (Sidekick) to surface financial risks.</li>
+                    <li>Presented data findings to cross-functional leadership.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership">
+        <h2 class="reveal">Leadership & Involvement</h2>
+        <div class="bento-grid">
+            <div class="card reveal">
+                <h3>NABA Treasurer</h3>
+                <span class="date">Jun 2024 - Present</span>
+                <ul>
+                    <li>Managing $2,000+ in organizational funding and budgeting.</li>
+                    <li>Ensuring 100% compliance with Rutgers RBGA guidelines.</li>
+                </ul>
+            </div>
+            <div class="card reveal">
+                <h3>RUAA Secretary</h3>
+                <span class="date">May 2024 - Present</span>
+                <ul>
+                    <li>Coordinating communications for 600+ students.</li>
+                    <li>Drove intern application growth by 288% through engagement.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteer">
+        <h2 class="reveal">Volunteer Work</h2>
+        <div class="card reveal" style="width: 100%;">
+            <h3>VITA Program: Quality Reviewer</h3>
+            <span class="date">2024 - 2026 Tax Seasons</span>
+            <ul>
+                <li>Prepared 60+ individual federal tax returns for low-income clients.</li>
+                <li>Served as Quality Reviewer, cross-checking entries against source documents.</li>
+                <li>Verified IDs and documentation to prevent potential tax fraud.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="reveal">Technical Projects</h2>
+        <div class="bento-grid">
+            <div class="card reveal project-card">
+                <h3>Pokémon API Application</h3>
+                <span class="date">Development Project</span>
+                <p style="margin-bottom: 15px; font-size: 0.95rem; color: #555;">Developed a functional web application that integrates with external APIs to fetch and display real-time data.</p>
+                <ul>
+                    <li>Built using HTML, CSS, and JavaScript.</li>
+                    <li>Implemented asynchronous data fetching to handle external API requests.</li>
+                    <li>Designed a responsive UI to showcase dynamic content.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <h2>Ready to connect?</h2>
+        <div class="btn-group">
+            <a href="mailto:daniela.colquhoun@gmail.com" class="btn">Email Daniela</a>
+            <a href="https://linkedin.com/in/daniela-colquhoun" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Daniela Colquhoun.</p>
+    </footer>
+</div>
+
+<script>
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
+</script>
+
+</body>
+</html>
