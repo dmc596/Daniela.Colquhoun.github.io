@@ -281,6 +281,77 @@
         </div>
     </section>
 
+    <section id="pokemon-game">
+    <h2 class="reveal">Interactive Lab</h2>
+    <div id="poke-mini-app">
+        <div id="start-screen" class="game-screen">
+            <h1 class="game-title">PokéGuess<span>2026</span></h1>
+            <div class="mode-select">
+                <button class="mode-btn" onclick="setMode('unlimited')">UNLIMITED</button>
+                <button class="mode-btn" onclick="setMode('timed')">SURVIVAL</button>
+            </div>
+            <div id="filter-settings" class="hidden">
+                <div class="filter-group">
+                    <label>Region</label>
+                    <select id="region-filter">
+                        <option value="all">All Generations</option>
+                        <option value="1">Kanto (Gen 1)</option>
+                        <option value="2">Johto (Gen 2)</option>
+                        <option value="3">Hoenn (Gen 3)</option>
+                        <option value="4">Sinnoh (Gen 4)</option>
+                        <option value="5">Unova (Gen 5)</option>
+                        <option value="6">Kalos (Gen 6)</option>
+                        <option value="7">Alola (Gen 7)</option>
+                        <option value="8">Galar (Gen 8)</option>
+                        <option value="9">Paldea (Gen 9)</option>
+                        <option value="10">Winds & Waves (Gen 10)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Type</label>
+                    <select id="type-filter">
+                        <option value="all">Any Type</option>
+                        <option value="normal">Normal</option><option value="fire">Fire</option>
+                        <option value="water">Water</option><option value="grass">Grass</option>
+                        <option value="electric">Electric</option><option value="ice">Ice</option>
+                        <option value="fighting">Fighting</option><option value="poison">Poison</option>
+                        <option value="ground">Ground</option><option value="flying">Flying</option>
+                        <option value="psychic">Psychic</option><option value="bug">Bug</option>
+                        <option value="rock">Rock</option><option value="ghost">Ghost</option>
+                        <option value="dragon">Dragon</option><option value="dark">Dark</option>
+                        <option value="steel">Steel</option><option value="fairy">Fairy</option>
+                    </select>
+                </div>
+                <button class="start-btn" onclick="startGame()">START QUIZ</button>
+            </div>
+        </div>
+
+        <div id="game-container" class="game-screen hidden">
+            <div class="stats-bar">
+                <div id="lives-display">❤️❤️❤️</div>
+                <div id="timer-wrapper" class="hidden">⏳ <span id="timer-display">10</span>s</div>
+                <div class="streak-pill">🔥 <span id="current-score">0</span></div>
+            </div>
+            <div class="canvas"><img id="poke-sprite" class="silhouette" src=""></div>
+            <div id="button-grid"></div>
+        </div>
+
+        <div id="game-over-screen" class="game-screen hidden">
+            <div class="game-over-content">
+                <h2 class="streak-header">STREAK BROKEN!</h2>
+                <h1 class="game-over-title">GAME OVER</h1>
+                <img src="leavanny_sad.png" alt="Sad Leavanny" class="sad-img">
+                <div class="final-stats">
+                    <p>Streak: <span id="final-score">0</span></p>
+                </div>
+                <button class="retry-btn" onclick="location.reload()">RETRY</button>
+            </div>
+        </div>
+    </div>
+</section>
+<link rel="stylesheet" href="game-style.css">
+<script src="game-logic.js"></script>
+    
     <section id="contact" class="reveal">
         <h2>Ready to connect?</h2>
         <div class="btn-group">
