@@ -1,68 +1,87 @@
-// All game variables scoped to this file
-let pokeNames = [], gamePool = [], activePkmn = null;
-let currentStreak = 0, gameLives = 3, modeChoice = 'unlimited';
+let allPokemon = [], pool = [], current = null;
+let streak = 0, lives = 3, mode = 'unlimited', timerInterval, timeLeft = 10;
 
 async function initGame() {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1028');
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1100');
     const data = await res.json();
-    pokeNames = data.results.map(p => p.name);
+    allPokemon = data.results;
 }
 
 function setMode(m) {
-    modeChoice = m;
+    mode = m;
     document.getElementById('filter-settings').classList.remove('hidden');
+    document.querySelector('.mode-select').classList.add('hidden');
 }
 
 async function startGame() {
-    const region = document.getElementById('region-filter').value;
-    gamePool = Array.from({length: 1028}, (_, i) => i + 1); // Default pool
-    
+    const reg = document.getElementById('region-filter').value;
+    const type = document.getElementById('type-filter').value;
+    const genRanges = {"1": [1, 151], "9": [906, 1025], "10": [1026, 1100]};
+    let baseIds = (reg === "all") ? Array.from({length: 1100}, (_, i) => i + 1) : Array.from({length: genRanges[reg][1] - genRanges[reg][0] + 1}, (_, i) => i + genRanges[reg][0]);
+
+    if (type !== "all") {
+        const typeRes = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
+        const typeData = await typeRes.json();
+        const typeIds = typeData.pokemon.map(p => { const parts = p.pokemon.url.split('/'); return parseInt(parts[parts.length - 2]); });
+        pool = baseIds.filter(id => typeIds.includes(id));
+    } else { pool = baseIds; }
+
+    if (mode === 'timed') { document.getElementById('timer-wrapper').classList.remove('hidden'); updateLives(); }
     document.getElementById('start-screen').classList.add('hidden');
     document.getElementById('game-container').classList.remove('hidden');
     nextRound();
 }
 
 async function nextRound() {
-    const id = gamePool[Math.floor(Math.random() * gamePool.length)];
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    activePkmn = await res.json();
-
-    const sprite = document.getElementById('poke-sprite');
-    sprite.src = activePkmn.sprites.other['official-artwork'].front_default;
-    sprite.classList.remove('revealed');
-    
-    fillButtons();
+    clearInterval(timerInterval);
+    const randomId = pool[Math.floor(Math.random() * pool.length)];
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
+    current = await res.json();
+    document.getElementById('poke-sprite').src = current.sprites.other['official-artwork'].front_default;
+    document.getElementById('poke-sprite').classList.remove('revealed');
+    if (mode === 'timed') startTimer();
+    setupChoices();
 }
 
-function fillButtons() {
+function startTimer() {
+    timeLeft = 10;
+    const display = document.getElementById('timer-display');
+    display.innerText = timeLeft;
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        display.innerText = timeLeft;
+        if (timeLeft <= 0) { clearInterval(timerInterval); handleWrong(); }
+    }, 1000);
+}
+
+function setupChoices() {
     const grid = document.getElementById('button-grid');
     grid.innerHTML = '';
-    const choices = [activePkmn.name];
+    let choices = [current.name];
     while(choices.length < 4) {
-        let rand = pokeNames[Math.floor(Math.random() * 1028)];
-        if(!choices.includes(rand)) choices.push(rand);
+        let r = allPokemon[Math.floor(Math.random() * allPokemon.length)].name;
+        if(!choices.includes(r)) choices.push(r);
     }
     choices.sort(() => Math.random() - 0.5).forEach(name => {
         const btn = document.createElement('button');
-        btn.innerText = name.toUpperCase();
-        btn.onclick = () => {
-            if(name === activePkmn.name) {
-                currentStreak++;
-                document.getElementById('current-score').innerText = currentStreak;
-                document.getElementById('poke-sprite').classList.add('revealed');
-                setTimeout(nextRound, 1200);
-            } else {
-                showGameOver();
-            }
-        };
+        btn.innerText = name.replace(/-/g, ' ').toUpperCase();
+        btn.onclick = () => (name === current.name) ? handleRight() : handleWrong();
         grid.appendChild(btn);
     });
 }
 
-function showGameOver() {
-    document.getElementById('game-container').classList.add('hidden');
-    document.getElementById('game-over-screen').classList.remove('hidden');
-    document.getElementById('final-score').innerText = currentStreak;
+function handleRight() {
+    streak++;
+    document.getElementById('current-score').innerText = streak;
+    document.getElementById('poke-sprite').classList.add('revealed');
+    setTimeout(nextRound, 1200);
 }
 
+function handleWrong() {
+    if (mode === 'timed') { lives--; updateLives(); if (lives <= 0) gameOver(); else nextRound(); }
+    else { gameOver(); }
+}
+
+function updateLives() { document.getElementById('lives-display').innerText = "❤️".repeat(lives); }
+function gameOver() { clearInterval(timerInterval); document.getElementById('game-container').classList.add('hidden'); document.getElementById('game-over-screen').classList.remove('hidden'); document.getElementById('final-score').innerText = streak; }
 initGame();
